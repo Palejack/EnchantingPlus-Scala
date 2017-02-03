@@ -1,13 +1,14 @@
 package com.aesireanempire.eplus.network
 
 import com.aesireanempire.eplus.ContainerAdvEnchantment
+
 import io.netty.buffer.ByteBuf
 import net.minecraft.enchantment.Enchantment
 import net.minecraft.entity.player.EntityPlayer
 
 class EnchantPacket(enchantments: Map[Enchantment, Int], cost: Int) extends EplusPacket {
 
-    var m_enchantments = collection.mutable.Map.empty[Int, Int]
+    var m_enchantments = collection.mutable.Map.empty[Integer, Integer]
     var m_cost = cost
 
     def this() = this(Map.empty[Enchantment, Int], 0)
@@ -16,8 +17,8 @@ class EnchantPacket(enchantments: Map[Enchantment, Int], cost: Int) extends Eplu
         val length = buf.readInt()
 
         for (i <- 0 until length) {
-            val enchantment = buf.readInt()
-            val level = buf.readInt()
+            val enchantment = buf.readInt().asInstanceOf[Integer]
+            val level = buf.readInt().asInstanceOf[Integer]
 
             m_enchantments = m_enchantments.++=(Map(enchantment -> level))
         }

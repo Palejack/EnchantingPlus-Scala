@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 
-@Mod(name = EnchantingPlusMod.MODNAME, modid = EnchantingPlusMod.MODID, version = EnchantingPlusMod.VERSION, modLanguage = "java")
+@Mod(name = EnchantingPlusMod.MODNAME, modid = EnchantingPlusMod.MODID, version = EnchantingPlusMod.VERSION, modLanguage = "java", useMetadata = true)
 public class EnchantingPlusMod {
 
     public static final String MODNAME = "Enchanting Plus";

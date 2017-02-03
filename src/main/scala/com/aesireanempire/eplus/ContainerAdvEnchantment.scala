@@ -1,17 +1,27 @@
 package com.aesireanempire.eplus
 
+import scala.collection.JavaConverters._
+
 import com.aesireanempire.eplus.blocks.entities.TileEntityAdvEnchantmentTable
-import com.aesireanempire.eplus.gui.elements.{DataProviderEnchantmentData, DataProviderInformation, ListItem, listItemEnchantments}
-import com.aesireanempire.eplus.inventory.{SlotArmor, SlotEnchantment, TableInventory}
-import net.minecraft.enchantment.{Enchantment, EnchantmentData, EnchantmentHelper}
+import com.aesireanempire.eplus.gui.elements.DataProviderEnchantmentData
+import com.aesireanempire.eplus.gui.elements.DataProviderInformation
+import com.aesireanempire.eplus.gui.elements.ListItem
+import com.aesireanempire.eplus.gui.elements.listItemEnchantments
+import com.aesireanempire.eplus.inventory.SlotArmor
+import com.aesireanempire.eplus.inventory.SlotEnchantment
+import com.aesireanempire.eplus.inventory.TableInventory
+
+import net.minecraft.enchantment.Enchantment
+import net.minecraft.enchantment.EnchantmentData
+import net.minecraft.enchantment.EnchantmentHelper
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.inventory.{Container, IInventory, Slot}
+import net.minecraft.inventory.Container
+import net.minecraft.inventory.IInventory
+import net.minecraft.inventory.Slot
 import net.minecraft.item.ItemStack
 import net.minecraft.util.BlockPos
 import net.minecraft.world.World
 import net.minecraftforge.common.ForgeHooks
-
-import scala.collection.JavaConversions._
 
 
 class ContainerAdvEnchantment(player: EntityPlayer, tile: TileEntityAdvEnchantmentTable) extends Container {
@@ -143,7 +153,7 @@ class ContainerAdvEnchantment(player: EntityPlayer, tile: TileEntityAdvEnchantme
         dataProvider.setData(newEnchantmentList)
     }
 
-    def tryEnchantItem(player: EntityPlayer, enchants: collection.mutable.Map[Int, Int], cost: Int): Boolean = {
+    def tryEnchantItem(player: EntityPlayer, enchants: collection.mutable.Map[Integer, Integer], cost: Int): Boolean = {
         val itemStack = tableInventory.getStackInSlot(0)
 
         if (itemStack == null) return false
@@ -162,8 +172,8 @@ class ContainerAdvEnchantment(player: EntityPlayer, tile: TileEntityAdvEnchantme
         true
     }
 
-    def enchantItem(player: EntityPlayer, enchants: collection.mutable.Map[Int, Int], itemStack: ItemStack) = {
-        EnchantmentHelper.setEnchantments(enchants, itemStack)
+    def enchantItem(player: EntityPlayer, enchants: collection.mutable.Map[Integer, Integer], itemStack: ItemStack) = {
+        EnchantmentHelper.setEnchantments(enchants.asJava, itemStack)
 
         if (enchants.isEmpty && AdvEnchantmentHelper.isBook(itemStack)) {
             itemStack.setTagCompound(null)

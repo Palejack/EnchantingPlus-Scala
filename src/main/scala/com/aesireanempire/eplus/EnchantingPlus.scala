@@ -2,15 +2,24 @@ package com.aesireanempire.eplus
 
 import java.io.File
 
-import com.aesireanempire.eplus.blocks.EplusBlocks
-import com.aesireanempire.eplus.handlers.{ToolTipHandler, ConfigHandler, GUIHandler}
-import com.aesireanempire.eplus.items.EplusItems
-import com.aesireanempire.eplus.network.{EplusChannelHandler, EplusPacket, PacketHandler}
-import net.minecraftforge.fml.common.event._
-import net.minecraftforge.fml.common.network.{FMLOutboundHandler, FMLEmbeddedChannel, NetworkRegistry}
-import net.minecraftforge.fml.relauncher.Side
+import scala.collection.JavaConverters.mapAsScalaMapConverter
 
-import scala.collection.JavaConverters._
+import com.aesireanempire.eplus.blocks.EplusBlocks
+import com.aesireanempire.eplus.handlers.ConfigHandler
+import com.aesireanempire.eplus.handlers.GUIHandler
+import com.aesireanempire.eplus.handlers.ToolTipHandler
+import com.aesireanempire.eplus.items.EplusItems
+import com.aesireanempire.eplus.network.EplusChannelHandler
+import com.aesireanempire.eplus.network.EplusPacket
+import com.aesireanempire.eplus.network.PacketHandler
+
+import io.netty.channel.ChannelHandler.Sharable
+import net.minecraftforge.fml.common.event.FMLInitializationEvent
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
+import net.minecraftforge.fml.common.network.FMLEmbeddedChannel
+import net.minecraftforge.fml.common.network.FMLOutboundHandler
+import net.minecraftforge.fml.common.network.NetworkRegistry
+import net.minecraftforge.fml.relauncher.Side
 
 
 object EnchantingPlus {
